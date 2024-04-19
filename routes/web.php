@@ -19,6 +19,10 @@ Route::get('/', function () {
     
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+    
 
 Route::get('/Myaccount', function () {
     //return view('welcome');
@@ -26,21 +30,18 @@ Route::get('/Myaccount', function () {
 });
 
 
-//Route::get('/matches', function () {
-    //return view('welcome');
-    //return "Matches";
+//Route::get('/login', function () {
+  //  return "login";
 //});
 
-Route::get('/Dislikes', function () {
-    //return view('welcome');
-    return "Dislikes";
-   
-});
+//Route::get('/register', function () {  
+   // return "register";
+//});
 
-Route::get('/login', function () {
-    //return view('welcome');
-    return "login";
-});
+Route::get('/signin', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/signin', 'Auth\LoginController@login');
+Route::get('/signup', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/signup', 'Auth\RegisterController@register');
 
 Route::get('/user/{id}', function($id){
 return "This is user number ". $id;
