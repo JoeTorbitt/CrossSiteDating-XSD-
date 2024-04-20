@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,11 @@ use App\Http\Controllers\Controller;
 
 Route::get('/', function () {
     return view('welcome');
+    
+});
+
+Route::get('/home', function () {
+    return view('home');
     
 });
 
@@ -38,10 +44,18 @@ Route::get('/Myaccount', function () {
    // return "register";
 //});
 
-Route::get('/signin', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('/signin', 'Auth\LoginController@login');
-Route::get('/signup', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('/signup', 'Auth\RegisterController@register');
+//Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+//Route::post('/login', 'Auth\LoginController@login');
+//Route::get('/register', 'App\Http\Controllers\Auth\RegisteredUserController')->name('register');
+//Route::get('/register', [App\Http\Controllers\Auth\RegisteredUserController::class, 'create'])->name('register');
+
+//Route::get('/register', 
+//'App\Http\Controllers\RegisteredUserController@create'); 
+
+//Route::resource('/register', 
+//'App\Http\Controllers\RegisteredUserController'); 
+
+//Route::post('/register', 'App\Http\Controllers\Auth\RegisteredUserController');
 
 Route::get('/user/{id}', function($id){
 return "This is user number ". $id;
@@ -56,3 +70,17 @@ Route::resource('matches',
 
 Route::get('/match/{id}/{name}', 
 'App\Http\Controllers\MatchesController@show'); 
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
