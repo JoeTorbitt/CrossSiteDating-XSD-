@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -33,10 +33,24 @@ class MatchesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        //
+        // Check if the user has already been matched
+        if ($request->user()->matches->contains($user->id)) {
+            return redirect()->back()->with('error', 'You have already matched with this user.');
+        }
+    
+        // Create a new match
+        $match = new Match;
+        $match->user_id = $request->user()->id;
+        $match->match_id = $user->id;
+        $match->save();
+    
+        return redirect()->back()->with('success', 'User matched successfully.');
     }
+    
+        
+    
 
     /**
      * Display the specified resource.

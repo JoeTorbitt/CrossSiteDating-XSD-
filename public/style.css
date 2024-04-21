@@ -1,0 +1,56 @@
+.dater-card {
+    width: 500px;
+    height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .dater-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dater-card img {
+    width: 50%;
+    height: 80px;
+    object-fit: cover;
+  }
+  
+  .dater-card .card-body {
+    padding: 10px;
+  }
+  
+  .dater-card h5 {
+    margin-top: 200px;
+    margin-bottom: 5px;
+  }
+  
+  .dater-card p {
+    margin-bottom: 10px;
+  }
+  
+  .dater-card .btn {
+    margin-top: 10px;
+  }
+
+.dater-container {
+  margin: 20px;
+}
+
+
+  .navbar-container {
+    padding: 20px;
+  }
+
+  .navbar a {
+    color: #0e0d0d;
+    text-decoration: none;
+    padding: 5px;
+  }
+  
+  .navbar a:hover {
+    background-color: #e9ecef;
+  }

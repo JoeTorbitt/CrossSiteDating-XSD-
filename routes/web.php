@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\ProfileController;
+//use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DaterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,36 +31,21 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
     
 
-Route::get('/Myaccount', function () {
+Route::get('/profile', function () {
     //return view('welcome');
     return "My Account";
 });
 
+Route::get('/daters', [DaterController::class, 'index'])->name('index');
+Route::get('/daters/{dater}', [DaterController::class, 'show'])->name('show');
 
-//Route::get('/login', function () {
-  //  return "login";
-//});
 
-//Route::get('/register', function () {  
-   // return "register";
-//});
-
-//Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-//Route::post('/login', 'Auth\LoginController@login');
-//Route::get('/register', 'App\Http\Controllers\Auth\RegisteredUserController')->name('register');
-//Route::get('/register', [App\Http\Controllers\Auth\RegisteredUserController::class, 'create'])->name('register');
-
-//Route::get('/register', 
-//'App\Http\Controllers\RegisteredUserController@create'); 
-
-//Route::resource('/register', 
-//'App\Http\Controllers\RegisteredUserController'); 
-
-//Route::post('/register', 'App\Http\Controllers\Auth\RegisteredUserController');
 
 Route::get('/user/{id}', function($id){
 return "This is user number ". $id;
 });
+
+Route::get('/users/{user}', 'UserController@show')->name('users.show');
 
 
 Route::get('/matches', 
@@ -84,3 +70,5 @@ Route::middleware('auth')->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+?>
