@@ -14,9 +14,12 @@
   }
   
   .dater-card img {
-    width: 50%;
-    height: 80px;
-    object-fit: cover;
+    width: 80%;
+    height: 200px;
+    object-fit: contain;
+    border: #0e0d0d;
+    border-radius: 20%;
+    border-top: #0e0d0d;
   }
   
   .dater-card .card-body {

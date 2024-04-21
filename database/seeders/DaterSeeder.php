@@ -17,7 +17,7 @@ class DaterSeeder extends Seeder
     {
         $daters = [
             ['name' => 'David', 'age' => 25, 'bio' => 'Im a fun dude', 'image' => 'dave.png'],
-            ['name' => 'james', 'age' => 20, 'bio' => 'Im a more fun dude', 'image' => 'Logo.png'],
+            ['name' => 'james', 'age' => 20, 'bio' => 'Im a more fun dude', 'image' => 'james.png'],
             ['name' => 'Angelina', 'age' => 21, 'bio' => 'I like cake', 'image' => 'angelina.png'],
             ['name' => 'Alice', 'age' => 25, 'bio' => 'Im an astronaut', 'image' => 'aguero.png'],
             

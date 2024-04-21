@@ -9,7 +9,7 @@
             @foreach ($daters as $dater)
                 <div class="col-md-4">
                     <div class="dater-card">
-                    <img src="{{ ('/images' . $dater->image) }}" alt="{{ $dater->name }}">
+                    <img src="{{ asset('storage/images/'.$dater->image)}}" alt="{{ $dater->name }}">
                         <div class="card-body">
                             <h5>{{ $dater->name }}</h5>
                             <p>Age: {{ $dater->age }}</p>
