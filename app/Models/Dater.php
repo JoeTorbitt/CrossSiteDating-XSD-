@@ -5,7 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Dater extends Model
 {
-    use HasFactory;
+
+    protected $fillable = [
+        'name', 'age', 'bio', 'liked',
+    ];
+    
+    
 }

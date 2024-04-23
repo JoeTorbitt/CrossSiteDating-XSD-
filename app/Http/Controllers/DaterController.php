@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDaterRequest;
 use App\Http\Requests\UpdateDaterRequest;
 use App\Models\Dater;
+use App\Models\Like;
 
 class DaterController extends Controller
 {
@@ -52,6 +53,27 @@ class DaterController extends Controller
         $dater = Dater::find($id);
         return view ('dater', ['dater' => $dater]);
     }
+
+    public function like(Dater $dater)
+{
+    // Check if the current user has already liked the dater
+    //if (Like::where('liker_id', auth()->id())->where('likee_id', $dater->id)->exists()) {
+        //return redirect()->back()->with('error', 'You have already liked this dater.');
+
+    // Update the 'liked' column for the specified dater
+    $dater->update(['liked' => true]);
+    return redirect()->route('dater.liked');
+}
+
+
+
+public function liked()
+{
+    // Retrieve the daters that the user has liked
+    $daters = Dater::where('liked', true)->get();
+    return view('liked', compact('daters'));
+    
+}
 
     /**
      * Show the form for editing the specified resource.

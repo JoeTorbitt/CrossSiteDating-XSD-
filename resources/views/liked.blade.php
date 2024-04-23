@@ -4,7 +4,7 @@
 <body>
 <link rel="stylesheet" href="{{ ('style.css') }}">
 <div class="container dater-container">
-        <h1>Daters</h1>
+        <h1>Your Likes</h1>
         <div class="row">
             @foreach ($daters as $dater)
                 <div class="col-md-4">
@@ -14,12 +14,6 @@
                             <h5>{{ $dater->name }}</h5>
                             <p>Age: {{ $dater->age }}</p>
                             <p>Bio: {{ $dater->bio }}</p>
-                            <form action="{{ route('dater.like', $dater) }}" method="POST">
-                            @csrf <!-- {{ csrf_field() }} -->   
-                                <button type="submit">Like</button>
-                            </form>
-
-
                         </div>
                     </div>
                 </div>
@@ -29,6 +23,3 @@
 </body>
 
 @endsection
-
-
-

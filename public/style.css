@@ -1,3 +1,27 @@
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main h1 {
+    font-size: 2.5em;
+    margin-top: 0;
+}
+
+main h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+}
+
+main p {
+    font-size: 1.1em;
+}
+
+
 .dater-card {
     width: 500px;
     height: 500px;
@@ -15,7 +39,7 @@
   
   .dater-card img {
     width: 80%;
-    height: 200px;
+    height: 150px;
     object-fit: contain;
     border: #0e0d0d;
     border-radius: 20%;
@@ -24,6 +48,10 @@
   
   .dater-card .card-body {
     padding: 10px;
+  }
+
+  .dater-card .message-form-container {
+      size: 5px
   }
   
   .dater-card h5 {
@@ -42,6 +70,8 @@
 .dater-container {
   margin: 20px;
 }
+
+
 
 
   .navbar-container {

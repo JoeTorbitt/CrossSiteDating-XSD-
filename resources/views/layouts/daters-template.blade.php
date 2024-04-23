@@ -9,7 +9,7 @@
         <div class="flex justify-between">
             <p class="text-gray-700">{{$dater['age']}}</p>
             @if(Route::currentRouteName()=='daters.index')
-                <button value="{{$product['id']}}" class="bg-blue-500 hover:bg-blue-700 text-white font:bold py-2 px-4 rounded-full select-dater">View</button>
+                <button value="{{$dater['id']}}" class="bg-blue-500 hover:bg-blue-700 text-white font:bold py-2 px-4 rounded-full select-dater">View</button>
                @elseif(Route::currentRouteName()=='daters.show')
                
                <button value="{{$daters['id']}}" class="bg-blue-500 hover:bg-blue-700 text-white font:bold py-2 px-4 rounded-full match-dater">match</button>
