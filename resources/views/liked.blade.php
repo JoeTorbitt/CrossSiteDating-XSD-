@@ -14,6 +14,10 @@
                             <h5>{{ $dater->name }}</h5>
                             <p>Age: {{ $dater->age }}</p>
                             <p>Bio: {{ $dater->bio }}</p>
+                            <form action="{{ route('dater.unlike', $dater) }}" method="POST">
+                            @csrf <!-- {{ csrf_field() }} -->   
+                                <button type="submit">Remove from Likes</button>
+                            </form>
                         </div>
                     </div>
                 </div>

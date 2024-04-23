@@ -38,11 +38,15 @@ Route::get('/profile', function () {
 
 
 // Like function 
+
+Route::middleware('auth')->group(function () {
+
 Route::get('/like/{dater}', 'App\Http\Controllers\DaterController@liked')->name('dater.liked');
 Route::post('/like/{dater}', 'App\Http\Controllers\DaterController@like')->name('dater.like');
-
 Route::get('/liked', 'App\Http\Controllers\DaterController@liked')->name('dater.liked');
-
+Route::post('/unlike/{dater}', 'App\Http\Controllers\DaterController@unlike')->name('dater.unlike');
+Route::get('/unlike/{dater}', 'App\Http\Controllers\DaterController@unlike')->name('dater.unlike');
+});
 
 
 //Route::post('message/store', 'MessageController@store')->name('message.store');
@@ -148,6 +152,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 // login, register and sign out function 
 Auth::routes();

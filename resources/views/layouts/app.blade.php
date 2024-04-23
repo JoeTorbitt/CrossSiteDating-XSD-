@@ -27,7 +27,7 @@
                 <nav>
                 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm navbar-container">
     <a href="/daters">Start dating</a>
-    <a href="/liked">Matches</a>
+    <a href="/liked">Likes</a>
     <a href="/profile">Profile</a>
     <a href="/XSS"> XSS</a>
     <a href="/SQLInjection"> SQLInjection</a>

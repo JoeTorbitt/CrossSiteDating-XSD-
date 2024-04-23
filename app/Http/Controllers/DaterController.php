@@ -61,6 +61,7 @@ class DaterController extends Controller
         //return redirect()->back()->with('error', 'You have already liked this dater.');
 
     // Update the 'liked' column for the specified dater
+    $user = auth()->user();
     $dater->update(['liked' => true]);
     return redirect()->route('dater.liked');
 }
@@ -74,6 +75,22 @@ public function liked()
     return view('liked', compact('daters'));
     
 }
+
+public function unlike(Dater $dater)
+{
+   
+    // Update the 'liked' column for the specified dater
+    $user = auth()->user();
+    $dater->update(['liked' => false]);
+    return redirect()->route('dater.liked');
+}
+
+public function message(Request $request, Dater $dater)
+{
+    return view('message', compact('dater'));
+}
+
+
 
     /**
      * Show the form for editing the specified resource.
