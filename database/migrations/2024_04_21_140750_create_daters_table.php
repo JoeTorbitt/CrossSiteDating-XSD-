@@ -17,9 +17,9 @@ class CreateDatersTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name', 250);
-            $table->string('age');
+            $table->string('age', 250);
             $table->string('bio', 250);
-            $table->string('location', 250);
+            //$table->string('messages', 250)->nullable();
             $table->string('image')->nullable();
 
         });

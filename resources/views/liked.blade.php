@@ -17,7 +17,20 @@
                             <form action="{{ route('dater.unlike', $dater) }}" method="POST">
                             @csrf <!-- {{ csrf_field() }} -->   
                                 <button type="submit">Remove from Likes</button>
+                                </form>
+                                
+                                <form action="{{ route('dater.message', $dater) }}" method="POST">
+                                @csrf <!-- {{ csrf_field() }} -->
+                                @method('PUT')
+                                <input type="hidden" name="recipient_id" value="{{ $dater->id }}">
+                                <div class="form-group">
+                                    <label for="message">Message:</label>
+                                    <input type="text" name="message" id="message" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send</button>
                             </form>
+
+                            
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@ class Dater extends Model
 {
 
     protected $fillable = [
-        'name', 'age', 'bio', 'liked',
+        'name', 'age', 'bio', 'liked', 'messages',
     ];
     
     

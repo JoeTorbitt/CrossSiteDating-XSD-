@@ -16,10 +16,10 @@ class DaterSeeder extends Seeder
     public function run()
     {
         $daters = [
-            ['name' => 'David', 'age' => 25, 'bio' => 'Im a fun dude', 'image' => 'dave.png'],
-            ['name' => 'james', 'age' => 20, 'bio' => 'Im a more fun dude', 'image' => 'james.png'],
-            ['name' => 'Angelina', 'age' => 21, 'bio' => 'I like cake', 'image' => 'angelina.png'],
-            ['name' => 'Alice', 'age' => 25, 'bio' => 'Im an astronaut', 'image' => 'aguero.png'],
+            ['name' => 'David', 'age' => 25, 'bio' => 'Im a fun dude', 'image' => 'dave.png', 'messages' => ''],
+            ['name' => 'james', 'age' => 20, 'bio' => 'Im a more fun dude', 'image' => 'james.png', 'messages' => ''],
+            ['name' => 'Angelina', 'age' => 21, 'bio' => 'I like cake', 'image' => 'angelina.png', 'messages' => ''],
+            ['name' => 'Aguero', 'age' => 25, 'bio' => 'Im an astronaut', 'image' => 'aguero.png', 'messages' => ''],
             
         ];
 
@@ -28,7 +28,8 @@ class DaterSeeder extends Seeder
                 'name' => $dater['name'],
                 'age' => $dater['age'],
                 'bio' => $dater['bio'],
-                'image' => $dater['image']
+                'image' => $dater['image'],
+                'messages' => $dater['messages']
             ]);
         }
 

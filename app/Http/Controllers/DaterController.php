@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreDaterRequest;
 use App\Http\Requests\UpdateDaterRequest;
 use App\Models\Dater;
@@ -56,10 +57,7 @@ class DaterController extends Controller
 
     public function like(Dater $dater)
 {
-    // Check if the current user has already liked the dater
-    //if (Like::where('liker_id', auth()->id())->where('likee_id', $dater->id)->exists()) {
-        //return redirect()->back()->with('error', 'You have already liked this dater.');
-
+    
     // Update the 'liked' column for the specified dater
     $user = auth()->user();
     $dater->update(['liked' => true]);
@@ -85,10 +83,42 @@ public function unlike(Dater $dater)
     return redirect()->route('dater.liked');
 }
 
+
+    
+//}
+
+//sends the message 
 public function message(Request $request, Dater $dater)
+    {
+        $message = $request->input('message');
+
+        $dater->update(['messages' => $message]);
+
+        return redirect()->route('dater.allmessages', $dater->id);
+    }
+
+//displays all messages sent
+public function messages(Dater $dater)
 {
-    return view('message', compact('dater'));
+  
+    $daters = Dater::where('id', '!=', $dater->id)
+        ->where('liked', true)
+        ->where('messages', '!=', '')
+        ->get();
+
+    return view('messages', compact('daters', 'dater'));
 }
+    //deletes the message
+public function unmessage(Dater $dater)
+{
+    $dater->update(['messages' => '']);
+    return redirect()->route('dater.allmessages', $dater->id);
+
+    
+
+}
+
+
 
 
 
@@ -98,10 +128,7 @@ public function message(Request $request, Dater $dater)
      * @param  \App\Models\Dater  $dater
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dater $dater)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -110,10 +137,7 @@ public function message(Request $request, Dater $dater)
      * @param  \App\Models\Dater  $dater
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDaterRequest $request, Dater $dater)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -121,8 +145,5 @@ public function message(Request $request, Dater $dater)
      * @param  \App\Models\Dater  $dater
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dater $dater)
-    {
-        //
-    }
+    
 }

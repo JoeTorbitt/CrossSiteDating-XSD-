@@ -49,31 +49,25 @@ Route::get('/unlike/{dater}', 'App\Http\Controllers\DaterController@unlike')->na
 });
 
 
-//Route::post('message/store', 'MessageController@store')->name('message.store');
 
+//message  function
+Route::get('/message/{dater}', 'App\Http\Controllers\DaterController@messages')->name('dater.message');
+Route::post('/message/{dater}', 'App\Http\Controllers\DaterController@message')->name('dater.message');
 
-
+//shows the daters that have received messages
+Route::get('/messages', 'App\Http\Controllers\DaterController@messages')->name('dater.allmessages');
+//shows the message
+Route::put('/message/{dater}', 'App\Http\Controllers\DaterController@message')->name('dater.message');
+//unsend a message
+Route::put('/unmessage/{dater}', 'App\Http\Controllers\DaterController@unmessage')->name('dater.unmessage');
+//Route::post('/message/{dater}', 'YourController@message_sent')->name('messages.display');
+//Route::post('/message', 'App\Http\Controllers\MessageController@store')->name('message.store');
+//Route::post('/message/{dater}', 'App\Http\Controllers\MessageController@store')->name('message.store');
+//Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
 //
 
 Route::get('/daters', [DaterController::class, 'index'])->name('index');
 Route::get('/daters/{dater}', [DaterController::class, 'show'])->name('show');
-
-//Route::middleware(['auth'])->group(function () {
-//    Route::resource('matches', MatchController::class)->only(['index', 'store']);
-//});
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //vulnerabilities*
