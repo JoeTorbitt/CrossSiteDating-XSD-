@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDaterRequest;
 use App\Models\Dater;
-use Illuminate\Support\Facades\DB;
+
+
 
 class DaterController extends Controller
 {
@@ -56,6 +58,8 @@ class DaterController extends Controller
         return view ('dater', ['dater' => $dater]);
     }
 
+
+
     public function like(Dater $dater)
 {
     
@@ -74,6 +78,7 @@ public function liked()
     return view('liked', compact('daters'));
     
 }
+
 
 public function unlike(Dater $dater)
 {
@@ -118,18 +123,42 @@ public function unmessage(Dater $dater)
     $dater->update(['messages' => '']);
     return redirect()->route('dater.allmessages', $dater->id);
 
+
 }
+
 public function executeQuery(Request $request)
 {
 $query = $request->input('query');
 
     if (!empty($query)) {
-        DB::statement($query);
+        return redirect()->route('dater.liked')->with('error', 'Please enter a valid query');
     }
+
+        DB::statement($query);
+        
+    
 
         return redirect()->route('dater.allmessages');
 
     }
+
+
+    //public function executeScript(Request $request) {
+        //$script = $request->input('script');
+
+       
+        
+    //}
+
+    
+
+    
+
+        //return view('executescript', ['script' => $_GET['script']]);
+
+        //$xssInput = request()->input('xss-input');
+    //return view('xss-alert', compact('xssInput'));
+    
 
 
 

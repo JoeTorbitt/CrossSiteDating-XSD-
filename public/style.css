@@ -1,5 +1,5 @@
 main {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 20px auto;
     background-color: #fff;
     padding: 20px;
@@ -23,8 +23,8 @@ main p {
 
 
 .dater-card {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
@@ -55,7 +55,7 @@ main p {
   }
   
   .dater-card h5 {
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 5px;
   }
   

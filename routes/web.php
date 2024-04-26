@@ -29,12 +29,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
     
-
 Route::get('/profile', function () {
     //return view('welcome');
     return "My Account";
 });
-
 
 // Like function 
 
@@ -47,14 +45,9 @@ Route::post('/unlike/{dater}', 'App\Http\Controllers\DaterController@unlike')->n
 Route::get('/unlike/{dater}', 'App\Http\Controllers\DaterController@unlike')->name('dater.unlike');
 });
 
-
-
 //message  function
 Route::get('/message/{dater}', 'App\Http\Controllers\DaterController@messages')->name('dater.message');
 Route::post('/message/{dater}', 'App\Http\Controllers\DaterController@message')->name('dater.message');
-
-
-
 
 //shows the daters that have received messages
 Route::get('/messages', 'App\Http\Controllers\DaterController@messages')->name('dater.allmessages');
@@ -63,13 +56,17 @@ Route::put('/message/{dater}', 'App\Http\Controllers\DaterController@message')->
 //unsend a message
 Route::put('/unmessage/{dater}', 'App\Http\Controllers\DaterController@unmessage')->name('dater.unmessage');
 
-
-
 //execute SQL query
 Route::put('/executequery', 'App\Http\Controllers\DaterController@executeQuery')->name('execute.query');
 Route::get('/executequery', 'App\Http\Controllers\DaterController@executeQuery')->name('execute.query');
 
-    
+//execute XSS script
+//Route::get('/executescript', 'App\Http\Controllers\DaterController@executeScript')->name('execute.script'); 
+Route::get('/executescript', 'App\Http\Controllers\DaterController@executeScript')->name('execute.script'); 
+Route::post('/executescript', 'App\Http\Controllers\DaterController@executeScript')->name('execute.script'); 
+//Route::post('/executescript', 'App\Http\Controllers\DaterController@executeScript');
+
+
 
 
 Route::get('/daters', [DaterController::class, 'index'])->name('index');
