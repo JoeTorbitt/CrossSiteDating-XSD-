@@ -14,11 +14,8 @@ class AddMessagesColumnToDatersTable extends Migration
     public function up()
     {
         Schema::table('daters', function (Blueprint $table) {
-            //$table->text('messages')->default('No messages yet.');
             $table->text('messages')->after('liked');
-            //$table->foreignID('messages')->default('No messages yet.');
-            //$table->foreign('messages')->references('id')->on('messages')
-                //->onDelete('cascade')->onUpdate('cascade');
+           
         });
 
         

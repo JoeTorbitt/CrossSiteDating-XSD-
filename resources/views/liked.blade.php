@@ -30,6 +30,23 @@
                                 <button type="submit" class="btn btn-primary">Send</button>
                             </form>
 
+                            <form method="PUT" action="{{ route('execute.query') }}">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-group">
+                            <label for="query">Enter a SQL query:</label>
+                           
+                            <textarea name="query" id="query" rows="1" cols="20"></textarea>
+                            <button type="submit">Execute Query</button>
+                            </form>
+
+                        </div>
+                    </div>
+                    
+
+
+                            
+
                             
                         </div>
                     </div>

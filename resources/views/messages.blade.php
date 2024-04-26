@@ -20,11 +20,13 @@
                                 @csrf
                                 @method('PUT')
                                 <button type="submit">Delete Message</button>
-</form>
-</div>
-</div>
+                            </form>
+                        </div>
+                    </div>
 
                             @endforeach
+
+   
 
 
         </div>
