@@ -31,7 +31,6 @@
     <a href="/profile">Profile</a>
     <a href="/XSS"> XSS</a>
     <a href="/SQLInjection"> SQLInjection</a>
-    <a href="/CSRF"> CSRF</a>
   </nav>
                     </ul>
                 </div>

@@ -25,9 +25,7 @@
                                 </div>
                                 <button class="message-button">Send message</button>
                             </form>
-
-<br>
-                            
+<br>                        
                             <form method="PUT" action="{{ route('execute.query') }}">
                             @csrf
                             @method('PUT')
@@ -54,28 +52,8 @@
                             @csrf <!-- {{ csrf_field() }} -->   
                                 <button class="dislike-button">remove from Likes</button>
                                 </form>
-             
-    
-
-                        
-                   
-                         
-                        
-                        
-
-                            
-                                                      
-                        
                     </div>
                 </div>
-                    
-
-
-                            
-
-                            
-                        
-                    
                 </div>
             @endforeach
         </div>

@@ -23,26 +23,6 @@ class DaterController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreDaterRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreDaterRequest $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -96,12 +76,7 @@ public function unlike(Dater $dater)
 //sends the message 
 public function message(Request $request, Dater $dater)
     {
-        $request->validate([
-            'message' => 'required',
-        ], [
-            'message.required' => 'Please enter a message.',
-        ]);
-
+       
         $message = $request->input('message');
 
         $dater->update(['messages' => $message]);
@@ -147,27 +122,6 @@ $query = $request->input('query');
         return redirect()->route('dater.allmessages');
 
     }
-
-
-    //public function executeScript(Request $request) {
-        //$script = $request->input('script');
-
-       
-        
-    //}
-
-    
-
-    
-
-        //return view('executescript', ['script' => $_GET['script']]);
-
-        //$xssInput = request()->input('xss-input');
-    //return view('xss-alert', compact('xssInput'));
-    
-
-
-
 
 
     /**

@@ -146,15 +146,6 @@ Route::get('/mitigateCSRF', function () {
 
 //end vulnerabilities documentation
 
-//csrf 
-//Route::post('/form', 'CSRFController@store')->name('form');
-
-
-
-
-
-
-
 
 
 Route::get('/dashboard', function () {
@@ -172,6 +163,6 @@ Route::middleware('auth')->group(function () {
 // login, register and sign out function 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 ?>
