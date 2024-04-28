@@ -14,21 +14,16 @@
                             <h5>{{ $dater->name }}</h5>
                             <p>Age: {{ $dater->age }}</p>
                             <p>Bio: {{ $dater->bio }}</p>
-                            <form action="{{ route('dater.unlike', $dater) }}" method="POST">
-                            @csrf <!-- {{ csrf_field() }} -->   
-                                <button type="submit">Remove from Likes</button>
-                                </form>
-                                <br>
                                 <br>
                                 <form action="{{ route('dater.message', $dater) }}" method="POST">
                                 @csrf <!-- {{ csrf_field() }} -->
                                 @method('PUT')
                                 <input type="hidden" name="recipient_id" value="{{ $dater->id }}">
                                 <div class="form-group">
-                                    <label for="message">Message:</label>
-                                    <input type="text" name="message" id="message" class="form-control" required>
+                                    <label for="message">Message {{ $dater->name }}:</label>
+                                    <textarea name="message" id="message" rows="2" cols="20"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <button class="message-button">Send message</button>
                             </form>
 
 <br>
@@ -38,8 +33,8 @@
                             @method('PUT')
                             <div class="form-group">
                             <label for="query">Enter a SQL query:</label>
-                            <textarea name="query" id="query" rows="1" cols="20"></textarea>
-                            <button type="submit">Execute Query</button>
+                            <textarea name="query" id="query" rows="2" cols="20"></textarea>
+                            <button class="execute-query-button">Execute Query</button>
                             </form>
                             <br>
                         </div>
@@ -48,9 +43,17 @@
                         <form method="POST" action="/xss">
                         @csrf
                         <label for="script">Enter XSS script:</label>
-                        <textarea name="script" id="script" cols="30" rows="10"></textarea>
-                        <button type="submit">Submit</button>
+                        <textarea name="script" id="script" cols="20" rows="2"></textarea>
+                        
+                        <button class="execute-script-button">Send Script</button>
                     </form>
+                    <br>
+                    <br>
+                    <br>
+                    <form action="{{ route('dater.unlike', $dater) }}" method="POST">
+                            @csrf <!-- {{ csrf_field() }} -->   
+                                <button class="dislike-button">remove from Likes</button>
+                                </form>
              
     
 

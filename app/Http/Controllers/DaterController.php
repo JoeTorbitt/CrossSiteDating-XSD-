@@ -96,6 +96,12 @@ public function unlike(Dater $dater)
 //sends the message 
 public function message(Request $request, Dater $dater)
     {
+        $request->validate([
+            'message' => 'required',
+        ], [
+            'message.required' => 'Please enter a message.',
+        ]);
+
         $message = $request->input('message');
 
         $dater->update(['messages' => $message]);

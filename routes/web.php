@@ -32,8 +32,8 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
     
 Route::get('/profile', function () {
-    //return view('welcome');
-    return "My Account";
+    return view('profile');
+    
 });
 
 
@@ -77,31 +77,14 @@ Route::get('/invalid-script', function () {
 })->name('invalid-script');
 
 
-//execute CSRF
 
-Route::get('/inject', function () {
-    return view('inject');
-});
-
-Route::post('/inject', function (Request $request) {
-    $data = $request->all();
-    DB::table('users')->insert([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => $data['password'],
-    ]);
-    return redirect('/inject')->with('success', 'Data injected successfully.');
-});
-
-
-
-
+//
 
 Route::get('/daters', [DaterController::class, 'index'])->name('index');
 Route::get('/daters/{dater}', [DaterController::class, 'show'])->name('show');
 
 
-//vulnerabilities*
+//vulnerabilities Documentation*
 //XSS documentation
 
 Route::get('/XSS', function () {
@@ -166,28 +149,12 @@ Route::get('/mitigateCSRF', function () {
 //csrf 
 //Route::post('/form', 'CSRFController@store')->name('form');
 
-Route::get('csrf', function () {
-    return view('csrf/csrf');
-})->middleware('csrf-exempt');
-
-
-Route::post('/change-email', function () {
-    // Change the user's email address
-})->middleware('csrf-exempt');
 
 
 
 
 
 
-
-
-
-
-
-
-
-Route::get('/users/{user}', 'UserController@show')->name('users.show');
 
 
 Route::get('/dashboard', function () {
@@ -195,9 +162,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', 'App\Http\Controllers\ProfileController@show')->name('profile.show');
+    Route::patch('/profile', 'App\Http\Controllers\ProfileController@update')->name('profile.update');
+    Route::delete('/profile', 'App\Http\Controllers\ProfileController@destroy')->name('profile.destroy');
 });
 
 

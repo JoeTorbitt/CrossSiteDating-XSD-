@@ -16,7 +16,7 @@
                             <p>Bio: {{ $dater->bio }}</p>
                             <form action="{{ route('dater.like', $dater) }}" method="POST">
                             @csrf <!-- {{ csrf_field() }} -->   
-                                <button type="submit">Like</button>
+                                <button class="like-button">Like</button>
                             </form>
 
 

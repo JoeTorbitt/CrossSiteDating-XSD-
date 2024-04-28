@@ -19,7 +19,8 @@
                             <form action="{{ route('dater.unmessage', $dater->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <button type="submit">Delete Message</button>
+                                <button class="dislike-button">Delete Message</button>
+                                
                             </form>
                         </div>
                     </div>
