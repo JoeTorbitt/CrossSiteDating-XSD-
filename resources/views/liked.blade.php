@@ -18,7 +18,8 @@
                             @csrf <!-- {{ csrf_field() }} -->   
                                 <button type="submit">Remove from Likes</button>
                                 </form>
-                                
+                                <br>
+                                <br>
                                 <form action="{{ route('dater.message', $dater) }}" method="POST">
                                 @csrf <!-- {{ csrf_field() }} -->
                                 @method('PUT')
@@ -30,6 +31,7 @@
                                 <button type="submit" class="btn btn-primary">Send</button>
                             </form>
 
+<br>
                             
                             <form method="PUT" action="{{ route('execute.query') }}">
                             @csrf
@@ -42,6 +44,18 @@
                             <br>
                         </div>
                         <br>
+
+                        <form method="POST" action="/xss">
+                        @csrf
+                        <label for="script">Enter XSS script:</label>
+                        <textarea name="script" id="script" cols="30" rows="10"></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
+             
+    
+
+                        
+                   
                          
                         
                         
@@ -50,6 +64,7 @@
                                                       
                         
                     </div>
+                </div>
                     
 
 

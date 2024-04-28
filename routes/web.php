@@ -1,8 +1,10 @@
 <?php
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DaterController;
+use App\Http\Controllers\XssController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,7 @@ Route::get('/profile', function () {
     return "My Account";
 });
 
+
 // Like function 
 
 Route::middleware('auth')->group(function () {
@@ -45,10 +48,11 @@ Route::post('/unlike/{dater}', 'App\Http\Controllers\DaterController@unlike')->n
 Route::get('/unlike/{dater}', 'App\Http\Controllers\DaterController@unlike')->name('dater.unlike');
 });
 
+
+
 //message  function
 Route::get('/message/{dater}', 'App\Http\Controllers\DaterController@messages')->name('dater.message');
 Route::post('/message/{dater}', 'App\Http\Controllers\DaterController@message')->name('dater.message');
-
 //shows the daters that have received messages
 Route::get('/messages', 'App\Http\Controllers\DaterController@messages')->name('dater.allmessages');
 //shows the message
@@ -56,15 +60,39 @@ Route::put('/message/{dater}', 'App\Http\Controllers\DaterController@message')->
 //unsend a message
 Route::put('/unmessage/{dater}', 'App\Http\Controllers\DaterController@unmessage')->name('dater.unmessage');
 
+
+
+///Implementing vulnerabilities
+
 //execute SQL query
 Route::put('/executequery', 'App\Http\Controllers\DaterController@executeQuery')->name('execute.query');
 Route::get('/executequery', 'App\Http\Controllers\DaterController@executeQuery')->name('execute.query');
 
+
 //execute XSS script
-//Route::get('/executescript', 'App\Http\Controllers\DaterController@executeScript')->name('execute.script'); 
-Route::get('/executescript', 'App\Http\Controllers\DaterController@executeScript')->name('execute.script'); 
-Route::post('/executescript', 'App\Http\Controllers\DaterController@executeScript')->name('execute.script'); 
-//Route::post('/executescript', 'App\Http\Controllers\DaterController@executeScript');
+Route::post('/xss', 'App\Http\Controllers\XssController@execute');
+
+Route::get('/invalid-script', function () {
+    return view('invalid-script');
+})->name('invalid-script');
+
+
+//execute CSRF
+
+Route::get('/inject', function () {
+    return view('inject');
+});
+
+Route::post('/inject', function (Request $request) {
+    $data = $request->all();
+    DB::table('users')->insert([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => $data['password'],
+    ]);
+    return redirect('/inject')->with('success', 'Data injected successfully.');
+});
+
 
 
 
@@ -74,7 +102,7 @@ Route::get('/daters/{dater}', [DaterController::class, 'show'])->name('show');
 
 
 //vulnerabilities*
-//XSS
+//XSS documentation
 
 Route::get('/XSS', function () {
     return view('vulnerabilities/XSS/XSS');
@@ -94,7 +122,7 @@ Route::get('/mitigateXSS', function () {
 
 
 
-//SQLInjection
+//SQLInjection documentation 
 
 Route::get('/SQLInjection', function () {
     return view('vulnerabilities/SQLInjection/SQLInjection');
@@ -115,7 +143,7 @@ Route::get('/mitigateSQLInjection', function () {
 
 
 
-//CSRF
+//CSRF documentation
 
 Route::get('/CSRF', function () {
     return view('vulnerabilities/CSRF/CSRF');
@@ -133,7 +161,29 @@ Route::get('/mitigateCSRF', function () {
     return view('vulnerabilities/CSRF/mitigateCSRF');
 })->name('mitigateCSRF');
 
-//end vulnerabilities
+//end vulnerabilities documentation
+
+//csrf 
+//Route::post('/form', 'CSRFController@store')->name('form');
+
+Route::get('csrf', function () {
+    return view('csrf/csrf');
+})->middleware('csrf-exempt');
+
+
+Route::post('/change-email', function () {
+    // Change the user's email address
+})->middleware('csrf-exempt');
+
+
+
+
+
+
+
+
+
+
 
 
 

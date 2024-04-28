@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,8 +24,15 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    //public function boot(BladeCompiler $bladeCompiler)
+    //{
+        //Blade::compiler()->disableEscaping();
+        //BladeCompiler::()->disableEscaping();
+        //$bladeCompiler->disableEscaping();
+    //}
+
     public function boot()
-    {
-        
-    }
+{
+
+}
 }
